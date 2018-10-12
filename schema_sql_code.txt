@@ -13,3 +13,23 @@ create table group (
   Date_finish datetime not null default now(),
   Course_id int not null
 );
+
+create table course(
+  Id int auto_increment primary key,
+  Name varchar(45) not null,
+  Topic varchar(45) not null,
+  Level varchar(45) not null
+);
+
+create table room(
+  Id int auto_increment primary key,
+  Address_id int not null,
+  Max_size int not null
+);
+
+create table address(
+  Id int auto_increment primary key,
+  City varchar(40) not null,
+  Street varchar(40) not null,
+  Number int not null
+);
