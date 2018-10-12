@@ -13,3 +13,56 @@ create table group (
   Date_finish datetime not null default now(),
   Course_id int not null
 );
+
+
+
+
+
+CREATE SCHEMA IF NOT EXISTS `jolanta` DEFAULT CHARACTER SET utf8 ;
+USE `jolanta` ;
+
+-- -----------------------------------------------------
+-- Table `jolanta`.`payments`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jolanta`.`payments` (
+  `id` INT NOT NULL,
+  `student_id` INT NULL,
+  `course_id` INT NULL,
+  `invoice_value` FLOAT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `jolanta`.`students`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jolanta`.`students` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `surname` VARCHAR(45) NULL,
+  `dob` DATE NULL,
+  `nationality` VARCHAR(45) NULL,
+  `studentscol` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `jolanta`.`schedule`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jolanta`.`schedule` (
+  `id` INT NOT NULL,
+  `monday` VARCHAR(45) NULL,
+  `tuesday` VARCHAR(45) NULL,
+  `wednesday` VARCHAR(45) NULL,
+  `thursday` VARCHAR(45) NULL,
+  `friday` VARCHAR(45) NULL,
+  `saturday` VARCHAR(45) NULL,
+  `sunday` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
