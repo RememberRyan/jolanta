@@ -1,0 +1,15 @@
+-- Jolanta Course Management BEGINS!
+
+create table student_group(
+  Id int not null auto_increment primary key,
+  Student_id int not null,
+  Group_id int not null
+);
+
+create table group (
+  Id int not null auto_increment primary key,
+  Schedule_id int not null,
+  Date_start datetime not null default now(),
+  Date_finish datetime not null default now(),
+  Course_id int not null
+);
