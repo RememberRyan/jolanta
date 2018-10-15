@@ -88,3 +88,19 @@ create table address(
   Street varchar(40) not null,
   Number int not null
 );
+
+-- foreign keys - best practice to use constraints
+alter table group
+  add constraint group_fk_room_id
+foreign key (room_id) references room(id),
+  add constraint group_fk_course_id
+foreign key (course_id) references course(id),
+  add constraint group_fk_schedule_id
+foreign key (schedule_id) references schedule(id);
+
+alter table student_group
+  add constraint student_group_fk_student_id
+foreign key (student_id) references student(id),
+  add constraint student_group_fk_group_id
+foreign key (group_id) references group(id),
+-- altering to put in foreign keys to already existing tables
