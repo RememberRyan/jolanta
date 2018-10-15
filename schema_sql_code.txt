@@ -1,11 +1,18 @@
 -- Jolanta Course Management BEGINS!
 
+-- -----------------------------------------------------
+-- Table `student_group`
+-- -----------------------------------------------------
 create table student_group(
   Id int not null auto_increment primary key,
   Student_id int not null,
   Group_id int not null
 );
 
+
+-- -----------------------------------------------------
+-- Table `group`
+-- -----------------------------------------------------
 create table group (
   Id int not null auto_increment primary key,
   Schedule_id int not null,
@@ -15,52 +22,47 @@ create table group (
 );
 
 
-
-
-
-create database if not exists jolanta;
-use jolanta;
-
 -- -----------------------------------------------------
--- Table `jolanta`.`payments`
+-- Table `payments`
 -- -----------------------------------------------------
 create table if not exists payments (
   Id int not null primary key,
   Student_id int not null,
   Course_id int not null,
-  Invoice_value float  not null);
+  Invoice_value float  not null
+);
 
 
 -- -----------------------------------------------------
--- Table `jolanta`.`students`
+-- Table `students`
 -- -----------------------------------------------------
 create table if not exists students (
   Id int not null auto_increment,
   Name varchar(45) not null,
   Surname varchar(45) not null,
   Dob datetime not null default now(),
-  Nationality varchar(45) not null);
+  Nationality varchar(45) not null
+);
 
 -- -----------------------------------------------------
--- Table `jolanta`.`schedule`
+-- Table `schedule`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `jolanta`.`schedule` (
-  `id` INT NOT NULL,
-  `monday` VARCHAR(45) NULL,
-  `tuesday` VARCHAR(45) NULL,
-  `wednesday` VARCHAR(45) NULL,
-  `thursday` VARCHAR(45) NULL,
-  `friday` VARCHAR(45) NULL,
-  `saturday` VARCHAR(45) NULL,
-  `sunday` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+create table schedule (
+  Id int not null primary key auto_increment,
+  monday varchar(45) not null,
+  tuesday varchar(45) not null,
+  wednesday varchar(45) not null,
+  thursday varchar(45) not null,
+  friday varchar(45) not null,
+  saturday varchar(45) not null,
+  sunday varchar(45)  not null
+);
 
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+-- -----------------------------------------------------
+-- Table `course`
+-- -----------------------------------------------------
 create table course(
   Id int auto_increment primary key,
   Name varchar(45) not null,
@@ -68,15 +70,37 @@ create table course(
   Level varchar(45) not null
 );
 
+-- -----------------------------------------------------
+-- Table `room`
+-- -----------------------------------------------------
 create table room(
   Id int auto_increment primary key,
   Address_id int not null,
   Max_size int not null
 );
 
+-- -----------------------------------------------------
+-- Table `address`
+-- -----------------------------------------------------
 create table address(
   Id int auto_increment primary key,
   City varchar(40) not null,
   Street varchar(40) not null,
   Number int not null
 );
+
+-- foreign keys - best practice to use constraints
+alter table group
+  add constraint group_fk_room_id
+foreign key (room_id) references room(id),
+  add constraint group_fk_course_id
+foreign key (course_id) references course(id),
+  add constraint group_fk_schedule_id
+foreign key (schedule_id) references schedule(id);
+
+alter table student_group
+  add constraint student_group_fk_student_id
+foreign key (student_id) references student(id),
+  add constraint student_group_fk_group_id
+foreign key (group_id) references group(id),
+-- altering to put in foreign keys to already existing tables
