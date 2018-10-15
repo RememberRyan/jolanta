@@ -14,16 +14,8 @@ Use the rest of the slides to instruct you on how this should be done.
  */
 // Named Queries
 @Entity
-@Table(name = "group")
-@NamedQueries({
-        @NamedQuery(
-                name = "get_prisoner_by_name",
-                // give an alias to a query
-                query = "select p from Prisoners p where name = :name"
-        )
-})
 
-public class group {
+public class HomeGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto-generate
@@ -49,16 +41,16 @@ public class group {
 
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "payments",
-            joinColumns = {@JoinColumn(name = "course_id", nullable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "schedule_id", nullable = false)}
-    )
-    private Set<LastMeal> course;
-
-    public payments() {
-    }
+//    @ManyToMany
+//    @JoinTable(
+//            name = "payments",
+//            joinColumns = {@JoinColumn(name = "course_id", nullable = false)},
+//            inverseJoinColumns = {@JoinColumn(name = "schedule_id", nullable = false)}
+//    )
+//    private Set<LastMeal> course;
+//
+//    public payments() {
+//    }
 
 
 
