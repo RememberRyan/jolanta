@@ -99,8 +99,18 @@ foreign key (course_id) references course(id),
 foreign key (schedule_id) references schedule(id);
 
 alter table student_group
-  add constraint student_group_fk_student_id
+  add constraint sg_fk_student_id
 foreign key (student_id) references student(id),
-  add constraint student_group_fk_group_id
+  add constraint sg_fk_group_id
 foreign key (group_id) references group(id),
 -- altering to put in foreign keys to already existing tables
+
+alter table room
+add constraint room_fk_address_id
+foreign key (address_id) references address(id);
+
+alter table payments
+add constraint payments_fk_student_id
+foreign key (student_id) references student(id),
+add constraint payments_fk_course_id
+foreign key (course_is) references course(id);
