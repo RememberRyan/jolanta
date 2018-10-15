@@ -18,8 +18,8 @@ create table group (
 
 
 
-CREATE SCHEMA IF NOT EXISTS `jolanta` DEFAULT CHARACTER SET utf8 ;
-USE `jolanta` ;
+create database if not exists jolanta;
+use jolanta;
 
 -- -----------------------------------------------------
 -- Table `jolanta`.`payments`
