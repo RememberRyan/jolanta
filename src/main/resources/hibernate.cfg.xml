@@ -29,9 +29,14 @@
         </property>
 
 
-        <!--<mapping class = "Prisoners"/>-->
-        <!--<mapping class = "LastMealMenu"/>-->
-        <!--<mapping class = "BanditBuffet"/>-->
+        <mapping class = "database.models.Address"/>
+        <mapping class = "database.models.Course"/>
+        <mapping class = "database.models.Group"/>
+        <mapping class = "database.models.Payments"/>
+        <mapping class = "database.models.Room"/>
+        <mapping class = "database.models.Schedule"/>
+        <mapping class = "database.models.Student"/>
+        <mapping class = "database.models.StudentGroup"/>
 
     </session-factory>
 </hibernate-configuration>
