@@ -2,7 +2,6 @@ package database.models;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 /**
  * Created by Ryan Alexander on 15/10/2018.

@@ -101,7 +101,7 @@ foreign key (Schedule_id) references schedule(Id);
 
 alter table student_group
   add constraint sg_fk_student_id
-foreign key (Student_id) references student(id),
+foreign key (Student_id) references student(Id),
   add constraint sg_fk_hg_id
 foreign key (Home_group_id) references home_group(Id);
 -- altering to put in foreign keys to already existing tables
