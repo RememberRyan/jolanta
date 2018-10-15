@@ -13,9 +13,10 @@ create table student_group(
 -- -----------------------------------------------------
 -- Table `group`
 -- -----------------------------------------------------
-create table group (
+create table home_group (
   Id int not null auto_increment primary key,
   Schedule_id int not null,
+  Room_id int not null,
   Date_start datetime not null default now(),
   Date_finish datetime not null default now(),
   Course_id int not null
@@ -37,7 +38,7 @@ create table if not exists payments (
 -- Table `students`
 -- -----------------------------------------------------
 create table if not exists students (
-  Id int not null auto_increment,
+  Id int not null auto_increment primary key,
   Name varchar(45) not null,
   Surname varchar(45) not null,
   Dob datetime not null default now(),
@@ -49,13 +50,13 @@ create table if not exists students (
 -- -----------------------------------------------------
 create table schedule (
   Id int not null primary key auto_increment,
-  monday varchar(45) not null,
-  tuesday varchar(45) not null,
-  wednesday varchar(45) not null,
-  thursday varchar(45) not null,
-  friday varchar(45) not null,
-  saturday varchar(45) not null,
-  sunday varchar(45)  not null
+  Monday varchar(45) not null,
+  Tuesday varchar(45) not null,
+  Wednesday varchar(45) not null,
+  Thursday varchar(45) not null,
+  Friday varchar(45) not null,
+  Saturday varchar(45) not null,
+  Sunday varchar(45)  not null
 );
 
 
@@ -90,27 +91,27 @@ create table address(
 );
 
 -- foreign keys - best practice to use constraints
-alter table group
-  add constraint group_fk_room_id
+alter table home_group
+  add constraint hg_fk_room_id
 foreign key (room_id) references room(id),
-  add constraint group_fk_course_id
+  add constraint hg_fk_course_id
 foreign key (course_id) references course(id),
-  add constraint group_fk_schedule_id
+  add constraint hg_fk_schedule_id
 foreign key (schedule_id) references schedule(id);
 
 alter table student_group
   add constraint sg_fk_student_id
 foreign key (student_id) references student(id),
   add constraint sg_fk_group_id
-foreign key (group_id) references group(id),
+foreign key (group_id) references home_group(id);
 -- altering to put in foreign keys to already existing tables
 
-alter table room
+  alter table room
 add constraint room_fk_address_id
 foreign key (address_id) references address(id);
 
 alter table payments
-add constraint payments_fk_student_id
+  add constraint payments_fk_student_id
 foreign key (student_id) references student(id),
-add constraint payments_fk_course_id
+  add constraint payments_fk_course_id
 foreign key (course_is) references course(id);
